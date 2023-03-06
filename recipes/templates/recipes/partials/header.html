@@ -1,12 +1,14 @@
+{% load static %}
+    {% comment %} <span class="main-logo-text">
+        Rápido & Fit
+    </span> {% endcomment %}
 <header class="main-header-container">
-    <div class="main-header container">
-        <h1>
-            <a href="http://127.0.0.1:8000/" class="main-logo">
-                <i class="fa-solid fa-utensils main-logo-icon"></i>
-                <span class="main-logo-text">
-                    Receitas Rápidas & Fit
-                </span>
-            </a>
-        </h1>
+    {% comment %} pode precisar inserir classe container aqui {% endcomment %}
+    <div class="main-header "> 
+        <a href="{% url 'recipes:home' %}" class="main-logo">
+            <img class="logo_fit" src="{% static 'recipes/img/logo.svg' %}" alt="Logo do site">
+            Rápido & Fit
+        </a>
+        
     </div>
 </header>

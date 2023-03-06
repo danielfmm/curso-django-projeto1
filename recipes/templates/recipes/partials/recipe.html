@@ -1,10 +1,14 @@
 <div class="recipe recipe-list-item">
     <div class="recipe-cover">
-        <img src="{{recipe.cover.url}}" alt="Temporário">
+        <a class="" href="{% url 'recipes:recipe' recipe.id %}">
+            <img src="{{recipe.cover.url}}" alt="Temporário">
+        </a>
     </div>
     <div class="recipe-title-container">
         <h2 class="recipe-title">
-            {{recipe.title}}
+           <a href="{% url 'recipes:recipe' recipe.id %}">
+                {{recipe.title}}
+           </a> 
         </h2>
     </div>
 
@@ -14,7 +18,7 @@
         </span>
         <span class="recipe-author-item">
             <i class="fas fa-calendar alt"></i>
-            {{ recipe.created_at|date:"d/m/y H:i"}} às {{ recipe.created_at|date:"H:i"}}
+            {{ recipe.timestamp }}
         </span>
         <span class="recipe-author-item">
             <a href="/recipes/category/cafe-da-manha;">
@@ -43,10 +47,19 @@
         </div>
     </div>
 
+    {% if is_detail_page is not True %}
     <footer class="recipe-footer">
-        <a href="" class="recipe-read-more button button-dark button-full-width">
+        <a href="{% url 'recipes:recipe' recipe.id %}" class="recipe-read-more button button-dark button-full-width">
             <i class="fa fa-eye"></i>
-            <span>Ver mais...</span>
+            <span>Ver receita</span>
         </a>
     </footer>
+    {% endif %}
+
+    {% if is_detail_page is True %}
+        <div class="preparation-steps">
+            {{ recipe.preparation_steps|linebreaksbr}}
+        </div>
+    {% endif %}
+
 </div>
